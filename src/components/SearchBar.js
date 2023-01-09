@@ -30,7 +30,9 @@ const SearchBar = (props) => {
                 <button onClick={handleSubmit} className='p-4'>
                     <FaSearch size={20} />
                 </button>
+                
             </form>
+     
         </div>
     )
 }

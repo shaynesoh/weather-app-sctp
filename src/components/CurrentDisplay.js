@@ -1,13 +1,13 @@
 import {FaArrowUp, FaArrowDown, FaThermometer, FaWind, FaWater} from 'react-icons/fa';
 import {FaSun, FaCloudRain, FaCloud, FaRegSnowflake, FaThunderstorm, FaSearch} from 'react-icons/fa';
 
-function CurrentDisplay(){
+function CurrentDisplay({location}){
     return (
         <>
             <div className="flex flex-row w-full justify-center text-blue-800 pt-10">
                 <div>
                     <div className='text-center'>
-                        <h1 className="text-xl font-semibold">Singapore</h1>
+                        <h1 className="text-xl font-semibold">{location}</h1>
                         <p className='font-light text-sm'>Tuesday | 9 May 2023</p>
                     </div>
                     <div className='flex flex-col md:flex-row items-center justify-between gap-x-10 sm:pb-4'>

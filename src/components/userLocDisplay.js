@@ -1,13 +1,17 @@
 import { useState } from "react";
-import { FaSyncAlt } from 'react-icons/fa';
+import { FaCrosshairs } from 'react-icons/fa';
 import styles from './userLocDisplay.module.css'
-import getLocation from "../services/mapsApi";
+import { geoAPIGetByCoords } from "../services/geoAPI";
 
 function UserLocDisplay({ onClick }) {
 
-  // const [userLatitude, setUserLatitude] = useState(1.3521)
-  // const [userLongitude, setUserLongitude] = useState(103.8198)
-  // const [userAddress, setUserAddress] = useState("")
+  const [userLocation, setUserlocation] = useState(
+    {
+      lat: 1.3521,
+      lon: 103.8198,
+      limit: 5,
+    }
+  )
 
   const handleClick = async (event) => {
 
@@ -18,14 +22,15 @@ function UserLocDisplay({ onClick }) {
 
     navigator.geolocation.getCurrentPosition(
       async position => {
-        // setUserLatitude(position.coords.latitude);
-        // setUserLongitude(position.coords.longitude);
-        // setUserAddress(address);
 
         try {
-          const locationData = await getLocation(position.coords.latitude, position.coords.longitude)
-          const address = locationData.results[0].address_components;
-          onClick(address[2].long_name + ", " + address[3].long_name);
+          const coords = {
+            ...userLocation,
+            lat: position.coords.latitude,
+            long: position.coords.longitude,
+          }
+
+          geoAPIGetByCoords(coords, onClick);
         }
         catch (error) {
           console.error(error);
@@ -39,12 +44,11 @@ function UserLocDisplay({ onClick }) {
   }
 
   return (
-    <div className={styles.userLocCard}>
-      <button onClick={handleClick}>
-        Use Current Location
+ 
+      <button onClick={handleClick} className="p-4 border-l-2">
+        <FaCrosshairs />
       </button>
-
-    </div>
+    
   )
 }
 export default UserLocDisplay;

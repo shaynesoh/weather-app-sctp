@@ -1,10 +1,44 @@
 .userLocCard{
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    width:auto;
-    background:wheat;
-    font-weight: 500;
-    font-size: 0.875rem;
-    padding:0.2rem;
+    text-align: center;
+    width:100%;
+   
+    padding:0.5rem;
+    font-weight: 400;
+    font-size: 0.85rem;
+    color:white;  
+    text-decoration-line: underline;  
 }
+ 
+.userLocButton {
+    position: relative;
+    padding:0.5rem;
+    background-color: #04AA6D;
+    border: none; 
+    width: 200px;
+    text-align: center;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.userLocButton:after {
+    content: "";
+    background: #ffffff;
+    display: block;
+    position: absolute;
+    padding-top: 150%;
+    padding-left: 350%;
+    margin-left: -150px!important;
+    margin-top: -140%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  
+  .userLocButton:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }

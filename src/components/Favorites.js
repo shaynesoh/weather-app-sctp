@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { FaMapMarkerAlt } from 'react-icons/fa';
+import { FaStar, FaPlusCircle } from 'react-icons/fa';
 import styles from './userLocDisplay.module.css'
 import getLocation from "../services/mapsApi";
 
-function UserLocDisplay({ onClick }) {
+function FavoritesMenu({ onClick }) {
 
   // const [userLatitude, setUserLatitude] = useState(1.3521)
   // const [userLongitude, setUserLongitude] = useState(103.8198)

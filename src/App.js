@@ -7,6 +7,7 @@ import CurrentDisplay from './components/CurrentDisplay';
 import WeeklyDisplay from './components/WeeklyDisplay';
 import HourlyDisplay from './components/HourlyDisplay';
 import getUrl from './services/weatherApi';
+import UserLocDisplay from './components/userLocDisplay';
 
 function App() {
   
@@ -18,6 +19,10 @@ function App() {
   const getSearchData = (searchInputs) => {
     setSearchParam(searchInputs);
     setDataType('weather');
+  }
+
+  const getUserLocation = (userLocation) =>{
+    getSearchData(userLocation);
   }
 
   // useEffect(() => {
@@ -38,6 +43,7 @@ function App() {
         <div className='mx-auto max-w-screen-md h-fit'>
           <SearchBar onSubmit={getSearchData}/>
         </div>
+        <UserLocDisplay onClick={getUserLocation}/>
         {/* below components only show when search returns weather data */}
         {weather && (
           <div>

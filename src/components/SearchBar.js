@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {geoAPIGetByZip, geoAPIGetByCity} from "../services/geoAPI";
-
+import UserLocDisplay from './userLocDisplay';
 import { FaSearch } from "react-icons/fa";
 
 const initialState = {
@@ -69,7 +69,10 @@ const SearchBar = ({ onSubmit }) => {
         <button onClick={handleSubmitZip} className="p-4">
           <FaSearch size={20} />
         </button>
+        <hr/>
+        <UserLocDisplay onClick={onSubmit}/>
       </form>
+      
     </div>
   );
 };

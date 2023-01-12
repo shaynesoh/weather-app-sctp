@@ -1,6 +1,5 @@
 import { PersonPlus } from 'react-bootstrap-icons';
 import {FaArrowUp, FaArrowDown, FaThermometer, FaWind, FaWater} from 'react-icons/fa';
-import {FaSun, FaCloudRain, FaCloud, FaRegSnowflake, FaThunderstorm} from 'react-icons/fa';
 
 function CurrentDisplay({weather}){
 
@@ -17,10 +16,10 @@ function CurrentDisplay({weather}){
                             {/* <FaSun size={100} /> */}
                             <img src={`http://openweathermap.org/img/w/${weather.icon}.png`} />
                             <div className='ml-5'>
-                                <p className='pt-5 font-light text-center text-9xl whitespace-nowrap'>{(weather.temp).toFixed(1)}<span className='text-5xl'> °C</span></p>
+                                <p className='pt-5 font-light text-center text-8xl whitespace-nowrap'>{(weather.temp).toFixed(1)}<span className='text-5xl'> °C</span></p>
                             </div>
                         </div>
-                        <div className='flex flex-col sm:flex-row sm:flex-col sm:pb-4 gap-y-3'>
+                        <div className='flex flex-col sm:flex-row sm:flex-col gap-y-3'>
                             <div className='flex flex-row'>
                                 <div className='flex items-center gap-x-2 mr-4'>
                                     <FaArrowUp />

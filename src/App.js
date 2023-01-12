@@ -7,7 +7,7 @@ import SearchBar from './components/SearchBar.js';
 import CurrentDisplay from './components/CurrentDisplay';
 import WeeklyDisplay from './components/WeeklyDisplay';
 import HourlyDisplay from './components/HourlyDisplay';
-import getUrl from './services/weatherApi';
+import getWeatherData from './services/weatherApi';
 import TableCurrent from './components/TableCurrent';
 import TableForecast from './components/TableForecast';
 
@@ -63,12 +63,8 @@ function App() {
     setDataType('weather');
   }
 
-  // useEffect(() => {
-  //   getUrl(dataType, searchParam);
-  // }, [searchParam]);
-
   useEffect(() => {
-    const fetchUrlData = async() => await getUrl(dataType, searchParam)
+    const fetchUrlData = async() => await getWeatherData(searchParam)
       .then((res) => {
         setWeather(res);
       })

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {geoAPIGetByZip, geoAPIGetByCity} from "../services/geoAPI";
 import UserLocDisplay from './userLocDisplay';
+import GeoDBSearch from "./GeoDBSearch";
 import { FaSearch } from "react-icons/fa";
 
 const initialState = {
@@ -12,6 +13,18 @@ const initialState = {
 
 const SearchBar = ({ onSubmit }) => {
   const [searchInputs, setSearchInputs] = useState(initialState);
+
+  const onSearchChange = (searchData) => {
+    const [name, country] = searchData.label.split(", ");
+    const [lat, lon] = searchData.value.split(", ");
+    const result = {
+      name: name,
+      country: country,
+      lat: lat,
+      lon: lon,
+    };
+    onSubmit(result);
+  };
 
   const handleSubmitCity = (event) => {
     event.preventDefault();
@@ -73,6 +86,11 @@ const SearchBar = ({ onSubmit }) => {
         <UserLocDisplay onClick={onSubmit}/>
       </form>
       
+      <form className="flex justify-between bg-white rounded-lg w-full">
+        <GeoDBSearch 
+          onSearchChange={onSearchChange} 
+        />
+      </form>
     </div>
   );
 };

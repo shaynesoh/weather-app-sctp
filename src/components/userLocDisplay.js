@@ -14,7 +14,7 @@ function UserLocDisplay({ onClick }) {
   )
 
   const handleClick = async (event) => {
-
+    event.preventDefault();
     if (!navigator.geolocation) {
       console.log("Geolocation unsupported by browser");
       return;
@@ -22,14 +22,12 @@ function UserLocDisplay({ onClick }) {
 
     navigator.geolocation.getCurrentPosition(
       async position => {
-
         try {
           const coords = {
             ...userLocation,
-            lat: position.coords.latitude,
+            lat: localStorage.lat,
             long: position.coords.longitude,
           }
-
           geoAPIGetByCoords(coords, onClick);
         }
         catch (error) {

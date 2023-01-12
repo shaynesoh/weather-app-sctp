@@ -12,7 +12,7 @@ import TableCurrent from './components/TableCurrent';
 import TableForecast from './components/TableForecast';
 import FavoritesMenu from './components/Favorites'
 import { X } from 'react-bootstrap-icons';
-
+import UserLocDisplay from './components/userLocDisplay';
 
 function App() {
 
@@ -66,37 +66,41 @@ function App() {
     setDataType('weather');
   }
 
-
-
   // useEffect(() => {
   //   getUrl(dataType, searchParam);
   // }, [searchParam]);
 
   useEffect(
     () => {
-      
-      const fetchUrlData = async () => 
-      searchParam ? await getUrl(dataType, searchParam)
-        .then((res) => {
-          setWeather(res);
-        }) : null ;
-      fetchUrlData() 
-    } 
-    ,[searchParam])
+
+      const fetchUrlData = async () =>
+        searchParam ? await getUrl(dataType, searchParam)
+          .then((res) => {
+            setWeather(res);
+          }) : null;
+      fetchUrlData()
+    }
+    , [searchParam])
 
   return (
     <div className='App'>
       <div className="bg-gradient-to-r from-blue-400 to-cyan-600 p-10">
+
         <div className='mx-auto max-w-screen-md h-fit flex'>
           <SearchBar onSubmit={getSearchData} />
-          <FavoritesMenu/>
         </div>
-        
+        <div className='mx-0 flex flex-row justify-center w-full'>
+          <p className='w-2/5'> </p>
+          <UserLocDisplay onClick={getSearchData} />
+          <FavoritesMenu onSelect={getSearchData} selectedLocation={searchParam} />
+
+        </div>
+
         {/* below components only show when search returns weather data */}
         {weather && (
           <div>
             <div className='mx-auto max-w-screen-md h-fit shadow-xl p-10 bg-white bg-opacity-75 mt-10'>
-              <CurrentDisplay weather={weather} />
+              <CurrentDisplay weather={weather} searchParam={searchParam} getSearchData={getSearchData} />
             </div>
             <div className='mx-auto max-w-screen-md h-fit shadow-xl p-10 bg-white bg-opacity-75 mt-10'>
               <HourlyDisplay />

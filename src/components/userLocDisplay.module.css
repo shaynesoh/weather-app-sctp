@@ -1,44 +1,29 @@
-.userLocCard{
-    text-align: center;
-    width:100%;
-   
-    padding:0.5rem;
-    font-weight: 400;
-    font-size: 0.85rem;
-    color:white;  
-    text-decoration-line: underline;  
-}
- 
-.userLocButton {
-    position: relative;
-    padding:0.5rem;
-    background-color: #04AA6D;
-    border: none; 
-    width: 200px;
-    text-align: center;
-    -webkit-transition-duration: 0.4s; /* Safari */
-    transition-duration: 0.4s;
-    text-decoration: none;
-    overflow: hidden;
-    cursor: pointer;
+.userLocCard {
+  text-align: center;
+  width: 100%;
+
+  padding: 0.5rem;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: white;
+  text-decoration-line: underline;
 }
 
-.userLocButton:after {
-    content: "";
-    background: #ffffff;
-    display: block;
-    position: absolute;
-    padding-top: 150%;
-    padding-left: 350%;
-    margin-left: -150px!important;
-    margin-top: -140%;
-    opacity: 0;
-    transition: all 0.8s
-  }
-  
-  .userLocButton:active:after {
-    padding: 0;
-    margin: 0;
-    opacity: 1;
-    transition: 0s
-  }
+.userLocButton {
+  background-color: #04AA6D;
+  color: white;
+  margin-inline: 0.20rem;
+  margin-top: 0.2rem;
+  padding: 1rem;
+  font-size: 1.5rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.userLocButton:hover {
+  background-color: #038050;
+}
+
+.userLocButton:active {
+  background-color: rgb(172, 238, 175);
+}

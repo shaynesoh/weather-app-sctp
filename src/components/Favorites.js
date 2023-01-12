@@ -32,7 +32,7 @@ function FavoritesMenu({ onSelect, selectedLocation }) {
       {showList && (
         <div className={styles.dropdowncontent}
         >
-          <button onClick={handleAdd} className={styles.locationli}>Add to favorites</button>
+          {selectedLocation && <button onClick={handleAdd} className={styles.locationli}>Add to favorites</button>}
           {locArray && locArray.map((loc,index) => {
             return <button key={index} className={styles.locationli} onClick={() =>handleClick(loc)}>
               {loc.name}

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {geoAPIGetByZip, geoAPIGetByCity} from "../services/geoAPI";
-import UserLocDisplay from './userLocDisplay';
 import GeoDBSearch from "./GeoDBSearch";
 import { FaSearch } from "react-icons/fa";
 
@@ -83,7 +82,7 @@ const SearchBar = ({ onSubmit }) => {
           <FaSearch size={20} />
         </button>
         <hr/>
-        <UserLocDisplay onClick={onSubmit}/>
+
       </form>
       
       <form className="flex justify-between bg-white rounded-lg w-full">

@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { FaCrosshairs } from 'react-icons/fa';
-import styles from './userLocDisplay.module.css'
 import { geoAPIGetByCoords } from "../services/geoAPI";
+import { FaMapMarkerAlt } from 'react-icons/fa';
+import styles from './userLocDisplay.module.css'
 
 function UserLocDisplay({ onClick }) {
-
   const [userLocation, setUserlocation] = useState(
     {
       lat: 1.3521,
@@ -25,7 +24,7 @@ function UserLocDisplay({ onClick }) {
         try {
           const coords = {
             ...userLocation,
-            lat: localStorage.lat,
+            lat: position.coords.latitude,
             long: position.coords.longitude,
           }
           geoAPIGetByCoords(coords, onClick);
@@ -42,11 +41,11 @@ function UserLocDisplay({ onClick }) {
   }
 
   return (
- 
-      <button onClick={handleClick} className="p-4 border-l-2">
-        <FaCrosshairs />
-      </button>
-    
+
+    <button onClick={handleClick} className={styles.userLocButton}>
+      <FaMapMarkerAlt />
+    </button>
+
   )
 }
 export default UserLocDisplay;

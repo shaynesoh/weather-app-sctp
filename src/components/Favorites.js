@@ -1,25 +1,23 @@
 import { useState } from "react";
 import styles from './Favorites.module.css'
 import { FaStar } from "react-icons/fa";
+import { geoAPIGetByCoords } from "../services/geoAPI";
 
-// function FavoritesMenu({ onAdd, locationArray }) {
-function FavoritesMenu({ }) {
-  const locationArray = [{
-    "zip": "259569",
-    "name": "Singapore",
-    "lat": 1.3126,
-    "lon": 103.8162,
-    "country": "SG"
-  },
-  {
-    "zip": "259569",
-    "name": "Malaysia",
-    "lat": 1.3126,
-    "lon": 103.8162,
-    "country": "SG"
-  },
+function FavoritesMenu({ onSelect, selectedLocation }) {
 
-  ]
+  const handleAdd = () => {
+    setlocArray([...locArray, selectedLocation]);
+  }
+
+  const handleClick = (loc) => {   
+    const searchParams = {
+      ...loc,
+      limit:5,
+    }
+    geoAPIGetByCoords(searchParams,onSelect);
+  }
+
+  const [locArray, setlocArray] = useState([]);
   const [showList, setShowList] = useState(false);
 
   return (
@@ -34,9 +32,11 @@ function FavoritesMenu({ }) {
       {showList && (
         <div className={styles.dropdowncontent}
         >
-          <a href="#" className={styles.locationli}>Add to favorites</a>
-          {locationArray.map((loc) => {
-            return <a href="#" className={styles.locationli}>{loc.name}</a>;
+          <button onClick={handleAdd} className={styles.locationli}>Add to favorites</button>
+          {locArray && locArray.map((loc,index) => {
+            return <button key={index} className={styles.locationli} onClick={() =>handleClick(loc)}>
+              {loc.name}
+            </button>;
           })}
         </div>
       )}

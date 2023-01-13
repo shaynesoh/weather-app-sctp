@@ -22,7 +22,7 @@ const SearchBar = ({ onSubmit }) => {
       lat: lat,
       lon: lon,
     };
-    onSubmit(result);
+    onSubmit(result); 
   };
 
   const handleSubmitCity = (event) => {

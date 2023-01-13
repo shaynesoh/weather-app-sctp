@@ -17,7 +17,7 @@ const WEEK_DAYS = [
   "Saturday",
   "Sunday",
 ];
-
+ 
 const WeeklyDisplay = ({ data }) => {
   const dayInAWeek = new Date().getDay();
 

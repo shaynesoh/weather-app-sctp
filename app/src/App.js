@@ -9,7 +9,7 @@ import WeeklyDisplay from './components/WeeklyDisplay';
 import HourlyDisplay from './components/HourlyDisplay';
 import getUrl from './services/weatherApi';
 import TableCurrent from './components/TableCurrent';
-import TableForecast from './components/TableForecast';
+import TableForecast from './components/TableForecast'; 
 
 export const WEATHER_KEY = "1e3039792caea495f5c730bd5144ded6";
 export const WEATHER_URL = `https://api.openweathermap.org/data/2.5`;

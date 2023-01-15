@@ -1,6 +1,6 @@
 import {FaSun, FaCloudRain, FaCloud, FaRegSnowflake} from 'react-icons/fa';
 
-function WeeklyForecast(){
+function WeeklyForecast({weather}){
     return (
         <>
             <div className='text-blue-800 mt-10'>
@@ -9,31 +9,13 @@ function WeeklyForecast(){
                 </div>
                 <hr className='my-3' />
                 <div className='flex flex-row items-center justify-between'>
-                    <div className='flex flex-col items-center'>
-                        <p className='font-light text-sm'>Day</p>
-                        <FaCloud size={30} className='my-2' />
-                        <p>25°C</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <p className='font-light text-sm'>Day</p>
-                        <FaCloud size={30} className='my-2' />
-                        <p>25°C</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <p className='font-light text-sm'>Day</p>
-                        <FaCloud size={30} className='my-2' />
-                        <p>25°C</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <p className='font-light text-sm'>Day</p>
-                        <FaCloud size={30} className='my-2' />
-                        <p>25°C</p>
-                    </div>
-                    <div className='flex flex-col items-center'>
-                        <p className='font-light text-sm'>Day</p>
-                        <FaCloud size={30} className='my-2' />
-                        <p>25°C</p>
-                    </div>
+                    {weather.forecast.day.map((day, i) => (
+                        <div className='flex flex-col items-center' key={day}>
+                            <p className='font-light text-sm'>{day}</p>
+                            <FaCloud size={30} className='my-2' />
+                            <p>{(weather.forecast.mean_temp[i]).toFixed(1)}°C</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </>

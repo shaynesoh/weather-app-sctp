@@ -9,8 +9,7 @@ const getUrl = (dataType, searchParams) => {
     return fetch(formatUrl).then((response) => response.json());
 };
 
-// fields extracted from current weather data:
-// `weather?lat=${lat}&lon=${lon}&APPID=${myKey}&units=${myUnits}`
+// format fields extracted from current weather data:
 const formatCurrentWeather = (data) => {
     let {
         name,
@@ -38,10 +37,13 @@ const formatCurrentWeather = (data) => {
     return {name, lat, lon, feels_like, temp, temp_min, temp_max, humidity, speed, description, icon};
 }
 
-// fields extracted from forecast weather data
-// `forecast?lat=${lat}&lon=${lon}&APPID=${myKey}&units=${myUnits}`
+// format fields extracted from forecast weather data
 const formatForecastWeather = (data) => {
-    let {list} = data;
+
+    let weeklyTemp = {};
+    var days = []
+    var weekly_temps = []
+
     // group forecast data into days
     const dailyData = data.list.reduce((days, row) => {
         const date = row.dt_txt.split(' ')[0];
@@ -49,9 +51,29 @@ const formatForecastWeather = (data) => {
         return days
       }, {});
 
-    console.log(dailyData);
+    // get today's weather data
+    const date = new Date().toISOString().substring(0, 10);
+    const hourlyTemp = dailyData[date].map(hour => hour.main.temp);
+    const hours = dailyData[date].map(hour => hour.dt_txt);
+      
+    // get daily mean temperature of next 5 days (excluding today)
+    for (const day in dailyData) {
+      if (day != date) {
+        var count = 0;
+        var temp_sum = 0;
+        for (const hour in dailyData[day]) {
+          temp_sum += dailyData[day][hour]['main']['temp'];
+          count ++;
+        }
+        var mean_daily_temp = temp_sum / count;
+        days.push(day);
+        weekly_temps.push(mean_daily_temp);
+      }
+    }
+    weeklyTemp['day'] = days;
+    weeklyTemp['mean_temp'] = weekly_temps;
+    return weeklyTemp;
   };
-
 
 // gets current weather and then forecast weather based on lat and lon from current weather data
 const getWeatherData = async(searchParams) => {
@@ -68,7 +90,7 @@ const getWeatherData = async(searchParams) => {
       lon,
     }).then(formatForecastWeather);
   
-    return { ...getCurrentWeather, ...getForecastWeather };
+    return { "current": {...getCurrentWeather}, "forecast": {...getForecastWeather}}
   };
   
 export default getWeatherData;

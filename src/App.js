@@ -27,7 +27,7 @@ function App() {
   // For a common city name like "Franklin", the user should include the country code separated by a comma
   // Eg: "Franklin, AU" or "Franklin, US"
   //============================================================================
-  // const [currentWeather, setCurrentWeather] = useState("");
+  // const [currentWeather, setWeather] = useState("");
   // const [forecastWeather, setForecastWeather] = useState("");
   // const myKey = "92fc5bd07e7c2e622ac3a9b5df3cce07";
   // const myUnits = "metric";
@@ -49,7 +49,7 @@ function App() {
   //       ]);
   //     console.log(current.data);
   //     console.log(forecast.data);
-  //     setCurrentWeather(current.data);
+  //     setWeather(current.data);
   //     setForecastWeather(forecast.data);
   //   } catch (error) {
   //     console.log(error.message);
@@ -60,7 +60,6 @@ function App() {
   // get data upon search submit
   const getSearchData = (searchInputs) => {
     setSearchParam(searchInputs);
-    setDataType('weather');
   }
 
   useEffect(() => {
@@ -77,7 +76,6 @@ function App() {
         <div className='mx-auto max-w-screen-md h-fit'>
           <SearchBar onSubmit={getSearchData}/>
         </div>
-        {/* below components only show when search returns weather data */}
         {weather && (
           <div>
             <div className='mx-auto max-w-screen-md h-fit shadow-xl p-10 bg-white bg-opacity-75 mt-10'>
@@ -85,7 +83,7 @@ function App() {
             </div>
             <div className='mx-auto max-w-screen-md h-fit shadow-xl p-10 bg-white bg-opacity-75 mt-10'>
               <HourlyDisplay />
-              <WeeklyDisplay />
+              <WeeklyDisplay weather={weather}/>
             </div>
           </div>
         )}

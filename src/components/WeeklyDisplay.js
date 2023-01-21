@@ -31,13 +31,16 @@ function WeeklyForecast({ weather }) {
         <hr className="my-3" />
         <div className="flex flex-row items-center justify-between">
           {daysCount !== 0 ? (
-            <button onClick={handleBack} style={{fontSize: 25}}>{"<"}</button>
+            <button onClick={handleBack} style={{ fontSize: 25 }}>
+              {"<"}
+            </button>
           ) : (
-            <span style={{fontSize: 25}}>&nbsp;&nbsp;</span>
+            <span style={{ fontSize: 25 }}>&nbsp;&nbsp;</span>
           )}
           {weather.list.slice(daysCount, daysCount + 5).map((day) => (
             <div className="flex flex-col items-center" key={day.dt}>
               <p className="font-light text-sm">{timeConverter(day.dt)}</p>
+              <p className="font-light text-sm">{day.weather[0].description}</p>
               <img src={`${icon_URL}${day.weather[0].icon}@2x.png`} alt="" />
               <p>
                 {day.temp.day.toFixed(1)} {ctx.isMetric ? "°C" : "°F"}
@@ -45,9 +48,11 @@ function WeeklyForecast({ weather }) {
             </div>
           ))}
           {daysCount <= 5 ? (
-            <button onClick={handleForward} style={{fontSize: 25}}>{">"}</button>
+            <button onClick={handleForward} style={{ fontSize: 25 }}>
+              {">"}
+            </button>
           ) : (
-            <span style={{fontSize: 25}}>&nbsp;&nbsp;</span>
+            <span style={{ fontSize: 25 }}>&nbsp;&nbsp;</span>
           )}
         </div>
       </div>
